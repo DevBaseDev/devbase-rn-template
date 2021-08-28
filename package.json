@@ -1,0 +1,33 @@
+{
+  "name": "@devbase/react-native-template",
+  "version": "0.0.1",
+  "description": "A minimal template with good architecture and common packages to let you focus on writing features right away.",
+  "scripts": {},
+  "files": [
+    "template",
+    "template.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevBaseDev/devbase-rn-template.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "template",
+    "boilerplate",
+    "starter",
+    "typescript"
+  ],
+  "author": "Juan Angarita <juan.angarita@devbase.us>",
+  "license": "MIT",
+  "homepage": "https://github.com/DevBaseDev/devbase-rn-template",
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+      "release": true
+    }
+  }
+}

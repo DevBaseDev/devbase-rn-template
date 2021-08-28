@@ -287,4 +287,4 @@ If you would like to learn more without going through the codebase, read the [fi
 
 ## Credits
 
-This template is modified from [react-native-typescript-template](https://github.com/react-native-community/react-native-template-typescript). Thank you ❤️
+This template is modified from [osamaqarem-react-native-template](https://github.com/osamaqarem/react-native-template). Thank you ❤️
