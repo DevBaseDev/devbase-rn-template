@@ -1,9 +1,5 @@
 # react-native-template
 
-[![Build Status](https://travis-ci.com/osamaq/react-native-template.svg?branch=master)](https://travis-ci.com/osamaq/react-native-template)
-[![npm downloads](https://img.shields.io/npm/dt/@osamaq/react-native-template.svg)](https://www.npmjs.com/package/@osamaq/react-native-template)
-[![npm version](https://img.shields.io/npm/v/@osamaq/react-native-template?color=44BC1C)](https://www.npmjs.com/package/@osamaq/react-native-template)
-
 <p align="center" >
   <img
     height="480px"
@@ -26,9 +22,7 @@ Preconfigured with
 - TypeScript
 - [SWR](https://swr.now.sh/) for data fetching/caching.
 - [apisauce](https://github.com/infinitered/apisauce) as data fetcher.
-- [Redux Toolkit](https://redux-toolkit.js.org/) for global state.
-- [Redux Observable](https://redux-observable.js.org/) for complex background thread-like work.
-- [React Navigation](https://reactnavigation.org/) (**v5**) for navigation.
+- [React Navigation](https://reactnavigation.org/) (**v6**) for navigation.
 - [Reactotron in Flipper](https://shift.infinite.red/better-react-native-debugging-with-reactotron-in-flipper-6b823af29220) integration for debugging.
 - [Sentry](https://github.com/getsentry/sentry-react-native) for debugging in production.
 - [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash) because splash screens are cool.
@@ -63,10 +57,10 @@ Create a new project using the template.
 
 - **Note:** the command will fail if you have the global legacy react-native-cli installed. Make sure you uninstall it first. More info at [react-native-community/cli](https://github.com/react-native-community/cli#about).
 
-### RN 0.63.2
+### RN 0.65.1
 
 ```bash
-$ npx react-native init MyApp --template @osamaq/react-native-template
+$ npx react-native init MyApp --template https://github.com/DevBaseDev/devbase-rn-template
 ```
 
 ## Optional Steps
@@ -101,9 +95,9 @@ Let's briefly go over the benefit of each library included in this template.
 
 ### TypeScript
 
-For type safety ¯\\_(ツ)_/¯
+For type safety
 
-But in all seriousness, if you are considering this template I assume you are a TypeScript fan. If you happen to be a JavaScript user, this template might be overwhelming. If you would like to start learning TypeScript, I suggest bootstrapping with this instead [react-native-community/react-native-template-typescript](https://github.com/react-native-community/react-native-template-typescript) so you can learn at your own pace.
+But in all seriousness, if you are considering this template I assume you are a TypeScript user. If you happen to be a JavaScript user, this template might be overwhelming.
 
 ### SWR
 
@@ -116,18 +110,6 @@ This library simplifies data fetching and cache management. It allows you to eas
 ### apisauce
 
 Its a wrapper around axios with extended functionality. I'm happy with its API and I like the problem matcher.
-
-### Redux/Redux Toolkit
-
-I'm happy using Redux Toolkit. It's a lot more concise now and I enjoy the redux ecosystem of plugins.
-
-SWR reduces our dependency on Redux for global state. And sometimes React Navigation can be used to send data to the next screen. I try to leverage these two before reaching out to global state.
-
-If you prefer something else, remove redux and go with that. Do not waste time trying a new state management solution.
-
-### Redux Observable
-
-This is used alongside Redux for complex background work. Most people will rarely need to use something like this. In fact, if you aren't sure, just remove it (also uninstall its dependency, rxjs).
 
 ### React Navigation
 
@@ -146,10 +128,6 @@ Flipper could be used for lower level debugging, such as viewing your database o
 ### Sentry
 
 Benefitial in debugging issues that occur only in release builds. You can view error stack traces for unhandled exceptions. You can also choose to log specific errors in some catch blocks to study how often they occur in production.
-
-In this template, there is a custom Redux [middleware](https://github.com/osamaq/react-native-template/blob/master/template/src/redux/middleware/sentryMiddleware.ts) that adds Redux actions as breadcrumbs to Sentry reports for even easier debugging.
-
-This is similar to [redux-sentry-middleware](https://github.com/vidit-sh/redux-sentry-middleware) but I've yet to test that one.
 
 ### react-native-bootsplash
 
@@ -175,7 +153,7 @@ iOS: two additional schemes are created in the Xcode project for staging and pro
     <img src="docs/assets/scheme.png" alt="Scheme's pre-action setting the .env file" width="100%">
 </div>
 
-NPM scripts for running the app with the desired configuration are [included](https://github.com/osamaq/react-native-template/blob/acc4f4ab117bee099a531ad44be1130f9d24df69/template/package.json#L11) for convenience.
+NPM scripts for running the app with the desired configuration are [included](https://github.com/DevBaseDev/devbase-rn-template/blob/main/template/package.json#L11) for convenience.
 
 ### Reanimated/Redash
 
@@ -201,7 +179,7 @@ Mirage is an in-memory server for intercepting API calls and returning whatever 
 
 Fastlane community has an endless amount of mobile development automation plugins. I currently use it mainly for [automatic versioning](https://osamaq.com/automatic-versioning-for-react-native-apps/), and often for deploying to Microsoft's App Center in [one command](https://github.com/osamaq/reactnative-fastlane-appcenter).
 
-This template also has a [fastlane command](https://github.com/osamaq/react-native-template/blob/acc4f4ab117bee099a531ad44be1130f9d24df69/template/fastlane/Fastfile#L203) for adding version badges to app icons. Useful outside of production as it makes it easier for QA to tell the app version.
+This template also has a [fastlane command](https://github.com/DevBaseDev/devbase-rn-template/blob/main/template/fastlane/Fastfile#L203) for adding version badges to app icons. Useful outside of production as it makes it easier for QA to tell the app version.
 
 <div align="center">
     <img src="docs/assets/ic_launcher.png" alt="App icon with version badge" width="20%">
@@ -235,9 +213,6 @@ root
     |   ├── home
     |   ├── landing
     |   └── navigation
-    └── redux
-    |   ├── middleware
-    |   └── slices
     └── services
         ├── cache
         ├── navigation
@@ -273,8 +248,6 @@ Quickly get an idea about each folder's role.
 | home           | Home screen. Has simple data fetching and global state examples.         |
 | landing        | Template's initial screen.                                               |
 | navigation     | Contains a simple stack navigator.                                       |
-| redux          | Redux integration.                                                       |
-| middleware     | Redux custom middleware. For now, a simple Sentry breadcrumb logger.     |
 | slices         | Redux state slices.                                                      |
 | services       | App's services.                                                          |
 | cache          | Cache service; AsyncStorage wrapper.                                     |
