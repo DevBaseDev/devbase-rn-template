@@ -1,16 +1,15 @@
-import AsyncStorage from "@react-native-community/async-storage"
-import Reactotron from "reactotron-react-native"
+import AsyncStorage from "@react-native-community/async-storage";
+import Reactotron from "reactotron-react-native";
 // @ts-ignore
-import ReactotronFlipper from "reactotron-react-native/dist/flipper"
-import { reactotronRedux } from "reactotron-redux"
+import ReactotronFlipper from "reactotron-react-native/dist/flipper";
 
 declare global {
   interface Console {
-    tron: typeof console.log
+    tron: typeof console.log;
   }
 }
 
-let reactotron: any
+let reactotron: any;
 
 if (__DEV__) {
   reactotron = Reactotron.setAsyncStorageHandler!(AsyncStorage) // AsyncStorage would either come from `react-native` or `@react-native-community/async-storage` depending on where you get it from
@@ -18,31 +17,30 @@ if (__DEV__) {
       name: "HelloWorld",
       createSocket: (path) => new ReactotronFlipper(path),
     }) // controls connection & communication settings
-    .use(reactotronRedux())
     .useReactNative({
       networking: {
         ignoreUrls: /\/(logs|symbolicate)$/,
       },
-    }) // add all built-in react native plugins
+    }); // add all built-in react native plugins
 
-  reactotron.connect()
+  reactotron.connect();
 
   // New console.log location
-  const consoleLog = console.log
+  const consoleLog = console.log;
 
   // Attach reactotron.logImportant to global console object
   console.tron = (...args: any) => {
     // Log to console
-    consoleLog(...args)
+    consoleLog(...args);
     // Log to reactotron
-    reactotron.logImportant(...args)
-  }
+    reactotron.logImportant(...args);
+  };
 
   // console.log now calls console.tron
-  console.log = console.tron
+  console.log = console.tron;
 
-  reactotron.clear()
-  console.log("Reactotron Configured")
+  reactotron.clear();
+  console.log("Reactotron Configured");
 } else {
   /**
    * Important: Surround all reactotron usage with __DEV__
@@ -50,8 +48,8 @@ if (__DEV__) {
    * this should save your app from crashing.
    */
   console.tron = (...args: any) => {
-    console.log(...args)
-  }
+    console.log(...args);
+  };
 }
 
-export default reactotron as Required<typeof Reactotron>
+export default reactotron as Required<typeof Reactotron>;
